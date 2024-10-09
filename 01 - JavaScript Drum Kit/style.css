@@ -10,7 +10,7 @@ html {
   padding: 0;
   font-family: sans-serif;
 }
-/* 
+
 .keys {
   display: flex;
   flex: 1;
@@ -31,7 +31,7 @@ html {
   color: white;
   background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 0.5rem black;
-} */
+}
 
 .playing {
   transform: scale(1.1);
@@ -52,7 +52,7 @@ kbd {
 }
 
 /*  Tillagt av Magnus */
-
+/* 
 .all-keys {
   display: flex;
   flex-direction: column;
@@ -72,7 +72,7 @@ kbd {
   white-space: nowrap;
 }
 
-.inner-wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -98,4 +98,4 @@ kbd {
   color: white;
   background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 0.5rem black;
-}
+} */
