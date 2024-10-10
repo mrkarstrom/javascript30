@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const hour = now.getHours();
     const hourDegrees = (hour / 12) * 360 + (mins / 60) * 30 + 90;
     hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+    let time = document.getElementById('digitalClock');
+    time.innerText = `${hour}:${mins < 10 ? '0' + mins : mins}:${
+      seconds < 10 ? '0' + seconds : seconds
+    }`;
   }
 
   setInterval(setDate, 1000);
