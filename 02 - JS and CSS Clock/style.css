@@ -6,12 +6,14 @@ html {
   font-size: 10px;
 }
 
-body {
+/* body {
   margin: 0;
   font-size: 2rem;
+  display: flex;
+  flex: 1;
   min-height: 100vh;
-  align-content: center;
-}
+  align-items: center;
+} */
 
 .clock {
   width: 30rem;
@@ -44,7 +46,13 @@ body {
   transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
+body {
+  margin: 0;
+  min-height: 100vh;
+  align-content: center;
+}
+
 #digitalClock {
   color: white;
-  font-size: clamp(0.8em, 4vw, 1.2em);
+  font-size: clamp(2em, 6vw, 4em);
 }
