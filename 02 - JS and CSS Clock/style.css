@@ -46,5 +46,5 @@ body {
 
 #digitalClock {
   color: white;
-  font-size: clamp(0.8em, 4wv, 1em);
+  font-size: clamp(0.8em, 4vw, 1.2em);
 }
