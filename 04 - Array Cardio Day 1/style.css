@@ -1,0 +1,6 @@
+body {
+  min-height: 100vh;
+  align-content: center;
+  width: max-content;
+  margin-inline: auto;
+}

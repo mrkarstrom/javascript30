@@ -1,9 +1,8 @@
+// Get your shorts on - this is an array workout!
+// ## Array Cardio Day 1
+
+// Some data we can work with
 document.addEventListener('DOMContentLoaded', () => {
-  // Get your shorts on - this is an array workout!
-  // ## Array Cardio Day 1
-
-  // Some data we can work with
-
   const inventors = [
     { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
     { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -19,22 +18,55 @@ document.addEventListener('DOMContentLoaded', () => {
     { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 },
   ];
 
-  // Function to populate the table with inventors
   const tableBody = document.getElementById('inventors-table-body');
+  const sortByLifespan = document.getElementById('sortByLifespan');
+  const sortByName = document.getElementById('sortByName');
+  const sortByYear = document.getElementById('sortByYear');
 
-  inventors.forEach((inventor) => {
-    const yearsLived = inventor.passed - inventor.year;
+  // Initial table population
+  updateList(inventors);
 
-    const row = `<tr>
-      <td>${inventor.first}</td>
-      <td>${inventor.last}</td>
-      <td>${inventor.year}</td>
-      <td>${inventor.passed}</td>
-      <td>${yearsLived}</td>
-    </tr>`;
-
-    tableBody.innerHTML += row;
+  // Event listeners for sorting
+  sortByLifespan.addEventListener('click', () => {
+    const sortedByLifespan = [...inventors].sort((a, b) => {
+      const aLifespan = a.passed - a.year;
+      const bLifespan = b.passed - b.year;
+      return bLifespan - aLifespan; // Descending order
+    });
+    updateList(sortedByLifespan);
   });
+
+  sortByName.addEventListener('click', () => {
+    const sortedByName = [...inventors].sort((a, b) => {
+      if (a.last > b.last) return 1;
+      if (a.last < b.last) return -1;
+      return 0;
+    });
+    updateList(sortedByName);
+  });
+
+  sortByYear.addEventListener('click', () => {
+    const sortedByYear = [...inventors].sort((a, b) => a.year - b.year);
+    updateList(sortedByYear);
+  });
+
+  // Function to update the table
+  function updateList(inventors) {
+    // Clear the table body before updating
+    tableBody.innerHTML = '';
+
+    inventors.forEach((inventor) => {
+      const yearsLived = inventor.passed - inventor.year;
+      const row = `<tr>
+        <td>${inventor.first}</td>
+        <td>${inventor.last}</td>
+        <td>${inventor.year}</td>
+        <td>${inventor.passed}</td>
+        <td>${yearsLived}</td>
+      </tr>`;
+      tableBody.innerHTML += row;
+    });
+  }
 });
 
 /*
