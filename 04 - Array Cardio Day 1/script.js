@@ -22,11 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const sortByLifespan = document.getElementById('sortByLifespan');
   const sortByName = document.getElementById('sortByName');
   const sortByYear = document.getElementById('sortByYear');
+  const calcAllYears = document.getElementById('calcAllYears');
 
-  // Initial table population
   updateList(inventors);
 
-  // Event listeners for sorting
   sortByLifespan.addEventListener('click', () => {
     const sortedByLifespan = [...inventors].sort((a, b) => {
       const aLifespan = a.passed - a.year;
@@ -48,6 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
   sortByYear.addEventListener('click', () => {
     const sortedByYear = [...inventors].sort((a, b) => a.year - b.year);
     updateList(sortedByYear);
+  });
+
+  calcAllYears.addEventListener('click', () => {
+    const allYears = [...inventors].reduce((total, inventor) => {
+      return total + (inventor.passed - inventor.year);
+    }, 0);
+    calcAllYears.innerText = `${allYears}`;
   });
 
   function updateList(inventors) {
