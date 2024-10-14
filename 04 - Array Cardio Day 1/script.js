@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 },
   ];
 
-  const tableBody = document.getElementById('inventors-table-body');
+  const tableBody = document.getElementById('inventorsTableBody');
   const sortByLifespan = document.getElementById('sortByLifespan');
   const sortByName = document.getElementById('sortByName');
   const sortByYear = document.getElementById('sortByYear');
@@ -50,14 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
     updateList(sortedByYear);
   });
 
-  // Function to update the table
   function updateList(inventors) {
-    // Clear the table body before updating
     tableBody.innerHTML = '';
 
     inventors.forEach((inventor) => {
       const yearsLived = inventor.passed - inventor.year;
-      const row = `<tr>
+      const row = `
+      <tr>
         <td>${inventor.first}</td>
         <td>${inventor.last}</td>
         <td>${inventor.year}</td>
