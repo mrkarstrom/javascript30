@@ -1,9 +1,7 @@
 body {
   min-height: 100vh;
   align-content: center;
-  width: max-content;
-  margin-inline: auto;
-  text-align: center;
+  text-align: center; /* Center text and inline elements */
 }
 
 table {
@@ -11,7 +9,17 @@ table {
   border: 1px solid gray;
 }
 
+table thead tr {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #eee;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 button {
+  width: 150px; /* Set a fixed width for buttons */
   margin-top: 20px;
   margin-inline: 10px;
   padding: 10px 20px;
@@ -45,6 +53,12 @@ button:focus {
 
 .button-group {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: auto;
+  grid-template-columns: repeat(
+    auto-fill,
+    150px
+  ); /* Adjust to fixed button width */
+  grid-auto-rows: auto; /* Adjusts row height based on content */
+  gap: 10px; /* Space between buttons */
+  max-width: 790px; /* Set a max width for the button group */
+  margin: 20px auto; /* Center the button group and add vertical margin */
 }
