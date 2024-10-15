@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const tableBody = document.getElementById('inventorsTableBody');
   const sortByLifespan = document.getElementById('sortByLifespan');
   const sortByName = document.getElementById('sortByName');
-  const sortByYear = document.getElementById('sortByYear');
+  const descBirthYear = document.getElementById('descBirthYear');
+  const ascBirthYear = document.getElementById('ascBirthYear');
   const calcAllYears = document.getElementById('calcAllYears');
 
   updateList(inventors);
@@ -44,9 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateList(sortedByName);
   });
 
-  sortByYear.addEventListener('click', () => {
-    const sortedByYear = [...inventors].sort((a, b) => a.year - b.year);
-    updateList(sortedByYear);
+  ascBirthYear.addEventListener('click', () => {
+    const ascBirthYear = [...inventors].sort((a, b) => a.year - b.year);
+    updateList(ascBirthYear);
+  });
+
+  descBirthYear.addEventListener('click', () => {
+    const descBirthYear = [...inventors].sort((a, b) => b.year - a.year);
+    updateList(descBirthYear);
   });
 
   calcAllYears.addEventListener('click', () => {
