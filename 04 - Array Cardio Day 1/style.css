@@ -19,9 +19,7 @@ table tbody tr:nth-child(odd) {
 }
 
 button {
-  width: 150px; /* Set a fixed width for buttons */
-  margin-top: 20px;
-  margin-inline: 10px;
+  width: 100%; /* Set a fixed width for buttons */
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
@@ -53,12 +51,10 @@ button:focus {
 
 .button-group {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    150px
-  ); /* Adjust to fixed button width */
-  grid-auto-rows: auto; /* Adjusts row height based on content */
-  gap: 10px; /* Space between buttons */
-  max-width: 790px; /* Set a max width for the button group */
-  margin: 20px auto; /* Center the button group and add vertical margin */
+  grid-template-columns: repeat(auto-fill, 250px);
+  grid-auto-rows: auto;
+  justify-content: center;
+  gap: 10px;
+  max-width: 790px;
+  margin: 20px auto;
 }
