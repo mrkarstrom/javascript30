@@ -1,7 +1,7 @@
 // Get your shorts on - this is an array workout!
 // ## Array Cardio Day 1
 
-// Some data we can work with
+// Array Cardio Day 1
 document.addEventListener('DOMContentLoaded', () => {
   const inventors = [
     { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
@@ -19,65 +19,98 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const tableBody = document.getElementById('inventorsTableBody');
-  const sortByLifespan = document.getElementById('sortByLifespan');
-  const sortByName = document.getElementById('sortByName');
-  const descBirthYear = document.getElementById('descBirthYear');
-  const ascBirthYear = document.getElementById('ascBirthYear');
-  const calcAllYears = document.getElementById('calcAllYears');
 
-  updateList(inventors);
-
-  sortByLifespan.addEventListener('click', () => {
-    const sortedByLifespan = [...inventors].sort((a, b) => {
-      const aLifespan = a.passed - a.year;
-      const bLifespan = b.passed - b.year;
-      return bLifespan - aLifespan; // Descending order
-    });
-    updateList(sortedByLifespan);
-  });
-
-  sortByName.addEventListener('click', () => {
-    const sortedByName = [...inventors].sort((a, b) => {
-      if (a.last > b.last) return 1;
-      if (a.last < b.last) return -1;
-      return 0;
-    });
-    updateList(sortedByName);
-  });
-
-  ascBirthYear.addEventListener('click', () => {
-    const ascBirthYear = [...inventors].sort((a, b) => a.year - b.year);
-    updateList(ascBirthYear);
-  });
-
-  descBirthYear.addEventListener('click', () => {
-    const descBirthYear = [...inventors].sort((a, b) => b.year - a.year);
-    updateList(descBirthYear);
-  });
-
-  calcAllYears.addEventListener('click', () => {
-    const allYears = [...inventors].reduce((total, inventor) => {
-      return total + (inventor.passed - inventor.year);
-    }, 0);
-    calcAllYears.innerText = `${allYears}`;
-  });
-
+  // Utility to update table
   function updateList(inventors) {
-    tableBody.innerHTML = '';
+    tableBody.innerHTML = ''; // Clear previous rows
 
     inventors.forEach((inventor) => {
       const yearsLived = inventor.passed - inventor.year;
       const row = `
-      <tr>
-        <td>${inventor.first}</td>
-        <td>${inventor.last}</td>
-        <td>${inventor.year}</td>
-        <td>${inventor.passed}</td>
-        <td>${yearsLived}</td>
-      </tr>`;
+        <tr>
+          <td><span class="cell-content">${inventor.first}</span></td>
+          <td><span class="cell-content">${inventor.last}</span></td>
+          <td><span class="cell-content">${inventor.year}</span></td>
+          <td><span class="cell-content">${inventor.passed}</span></td>
+          <td><span class="cell-content">${yearsLived}</span></td>
+        </tr>`;
       tableBody.innerHTML += row;
     });
   }
+
+  // Initial table load
+  updateList(inventors);
+});
+
+// Sorting and event listeners
+const sortByLifespan = document.getElementById('sortByLifespan');
+const sortByName = document.getElementById('sortByName');
+const descBirthYear = document.getElementById('descBirthYear');
+const ascBirthYear = document.getElementById('ascBirthYear');
+const calcAllYears = document.getElementById('calcAllYears');
+const columns = document.querySelectorAll('table thead tr th');
+const wrapper = document.querySelector('.wrapper');
+let activeIndex;
+
+// Sorting events
+sortByLifespan.addEventListener('click', () => {
+  const sortedByLifespan = [...inventors].sort((a, b) => {
+    const aLifespan = a.passed - a.year;
+    const bLifespan = b.passed - b.year;
+    return bLifespan - aLifespan; // Descending order
+  });
+  updateList(sortedByLifespan);
+});
+
+sortByName.addEventListener('click', () => {
+  const sortedByName = [...inventors].sort((a, b) => {
+    if (a.last > b.last) return 1;
+    if (a.last < b.last) return -1;
+    return 0;
+  });
+  updateList(sortedByName);
+});
+
+ascBirthYear.addEventListener('click', () => {
+  const ascBirthYear = [...inventors].sort((a, b) => a.year - b.year);
+  updateList(ascBirthYear);
+});
+
+descBirthYear.addEventListener('click', () => {
+  const descBirthYear = [...inventors].sort((a, b) => b.year - a.year);
+  updateList(descBirthYear);
+});
+
+calcAllYears.addEventListener('click', () => {
+  const allYears = [...inventors].reduce((total, inventor) => {
+    return total + (inventor.passed - inventor.year);
+  }, 0);
+  calcAllYears.innerText = `${allYears}`;
+});
+
+// Column resize functions
+const resize = (e) => {
+  const nextWidth =
+    e.clientX - columns[activeIndex].offsetLeft - wrapper.offsetLeft;
+  columns[activeIndex].style.width = `${nextWidth}px`; // Apply width to the column
+};
+
+const stopResize = () => {
+  document.body.style.cursor = 'default';
+  window.removeEventListener('mousemove', resize);
+  window.removeEventListener('mouseup', stopResize);
+};
+
+const initResize = (index) => {
+  activeIndex = index;
+  document.body.style.cursor = 'col-resize';
+  window.addEventListener('mousemove', resize);
+  window.addEventListener('mouseup', stopResize);
+};
+
+// Resize event listener for each column
+columns.forEach((column, index) => {
+  column.addEventListener('mousedown', () => initResize(index));
 });
 
 /*

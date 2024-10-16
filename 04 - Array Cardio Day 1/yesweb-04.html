@@ -8,28 +8,56 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Inventors</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Year of Birth</th>
-          <th>Year of Death</th>
-          <th>Years Lived</th>
-        </tr>
-      </thead>
-      <tbody id="inventorsTableBody">
-        <!-- Rows will be dynamically added here -->
-      </tbody>
-    </table>
-    <div class="button-group">
-      <button id="sortByLifespan">Sort by lifespan!</button>
-      <button id="sortByName">Sort by last name</button>
-      <button id="ascBirthYear">Ascending Birth Year</button>
-      <button id="descBirthYear">Descending Birth Year</button>
-      <button id="calcAllYears">Sum of all years lived!</button>
+    <div class="wrapper">
+      <h1>Inventors</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              First Name<span
+                class="draggable"
+                onmousedown="initResize(0)"
+              ></span>
+            </th>
+            <th>
+              Last Name<span
+                class="draggable"
+                onmousedown="initResize(0)"
+              ></span>
+            </th>
+            <th>
+              Year of Birth<span
+                class="draggable"
+                onmousedown="initResize(0)"
+              ></span>
+            </th>
+            <th>
+              Year of Death<span
+                class="draggable"
+                onmousedown="initResize(0)"
+              ></span>
+            </th>
+            <th>
+              Years Lived<span
+                class="draggable"
+                onmousedown="initResize(0)"
+              ></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="inventorsTableBody">
+          <!-- Rows will be dynamically added here -->
+        </tbody>
+      </table>
+      <div class="button-group">
+        <button id="sortByLifespan">Sort by lifespan!</button>
+        <button id="sortByName">Sort by last name</button>
+        <button id="ascBirthYear">Ascending Birth Year</button>
+        <button id="descBirthYear">Descending Birth Year</button>
+        <button id="calcAllYears">Sum of all years lived!</button>
+      </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>

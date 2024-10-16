@@ -5,13 +5,43 @@ body {
 }
 
 table {
+  /* border-collapse: collapse; */
   margin-inline: auto;
   border: 1px solid gray;
+  width: 100%;
+}
+
+table th {
+  user-select: none;
+  padding: 0 10px;
 }
 
 table thead tr {
   background-color: rgba(0, 0, 0, 0.5);
   color: #eee;
+}
+
+table :is(th, td) {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 32px;
+}
+
+table .cell-content {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  translate: 0 -50%;
+}
+
+table .draggable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  cursor: col-resize;
 }
 
 table tbody tr:nth-child(odd) {
@@ -57,4 +87,10 @@ button:focus {
   gap: 10px;
   max-width: 790px;
   margin: 20px auto;
+}
+
+.wrapper {
+  overflow: auto;
+  position: relative;
+  z-index: 2;
 }
