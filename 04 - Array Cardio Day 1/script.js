@@ -88,31 +88,6 @@ calcAllYears.addEventListener('click', () => {
   calcAllYears.innerText = `${allYears}`;
 });
 
-// Column resize functions
-const resize = (e) => {
-  const nextWidth =
-    e.clientX - columns[activeIndex].offsetLeft - wrapper.offsetLeft;
-  columns[activeIndex].style.width = `${nextWidth}px`; // Apply width to the column
-};
-
-const stopResize = () => {
-  document.body.style.cursor = 'default';
-  window.removeEventListener('mousemove', resize);
-  window.removeEventListener('mouseup', stopResize);
-};
-
-const initResize = (index) => {
-  activeIndex = index;
-  document.body.style.cursor = 'col-resize';
-  window.addEventListener('mousemove', resize);
-  window.addEventListener('mouseup', stopResize);
-};
-
-// Resize event listener for each column
-columns.forEach((column, index) => {
-  column.addEventListener('mousedown', () => initResize(index));
-});
-
 /*
   const people = [
     'Bernhard, Sandra',
